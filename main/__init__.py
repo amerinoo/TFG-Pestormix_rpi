@@ -1,6 +1,5 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-
 import sys
 import os
 import traceback
@@ -9,6 +8,7 @@ import time
 import datetime
 import socket
 
+from main.json_parser import JsonParser
 __author__ = 'Albert'
 
 
@@ -19,15 +19,14 @@ def setup():
     port = 1110  # Reserve a port for your service.
     sock.bind((host, port))  # Bind to the port
 
-
 def mainloop():
     global sock, options
     print "Start loop"
     try:
         while True:
             json_message, address = sock.recvfrom(1024)
-            print >> sys.stderr, "Datagrama de ", address
-            print json_message
+            json_parser = JsonParser(json_message)
+            json_parser.parse()
     finally:
         sock.close()
 
