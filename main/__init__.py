@@ -9,22 +9,26 @@ import datetime
 import socket
 
 from main.json_parser import JsonParser
+
 __author__ = 'Albert'
 
 
 def setup():
     global sock, options
-    sock = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)  # Create a socket object
+    sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)  # Create a socket object
     host = socket.gethostname()  # Get local machine name
     port = 1110  # Reserve a port for your service.
     sock.bind((host, port))  # Bind to the port
+    sock.listen(1)
+
 
 def mainloop():
     global sock, options
     print "Start loop"
     try:
         while True:
-            json_message, address = sock.recvfrom(1024)
+            conn, addr = sock.accept()
+            json_message = conn.recv(512)[2:]  # Removed init trash
             json_parser = JsonParser(json_message)
             json_parser.parse()
     finally:
