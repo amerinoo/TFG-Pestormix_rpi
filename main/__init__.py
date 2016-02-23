@@ -22,23 +22,37 @@ def setup():
     sock.listen(1)
 
 
-def mainloop():
+def main_loop():
     global sock, options
     print "Start loop"
     try:
         while True:
             conn, addr = sock.accept()
             json_message = conn.recv(512)[2:]  # Removed init trash
+            print json_message
             json_parser = JsonParser(json_message)
             json_parser.parse()
     finally:
         sock.close()
 
 
+def main_loop_mock():
+    json_message = "{\"glass\":\"Glass 0\",\"v0\":{\"use\":false,\"name\":\"Coca Cola\",\"alcohol\":false},\"v1\":" \
+                   "{\"use\":false,\"name\":\"Coca Cola\",\"alcohol\":false},\"v2\":{\"use\":false,\"name\":\"" \
+                   "Lemonade\",\"alcohol\":false},\"v3\":{\"use\":true,\"name\":\"Orangeade\",\"alcohol\":false}}"
+    json_parser = JsonParser(json_message)
+    cocktail = json_parser.parse()
+    cocktail.serve()
+
+def main_mock():
+    global options, args
+    main_loop_mock()
+
+
 def main():
     global options, args
     setup()
-    mainloop()
+    main_loop()
 
 
 if __name__ == '__main__':
@@ -54,7 +68,7 @@ if __name__ == '__main__':
         if options.verbose:
             print time.asctime()
 
-        main()
+        main_mock()
 
         now_time = time.time()
         if options.verbose:
