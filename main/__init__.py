@@ -37,7 +37,7 @@ def main_loop():
 
 
 def main_loop_mock():
-    json_message = "{\"glass\":\"Glass 0\",\"v0\":{\"use\":false,\"name\":\"Coca Cola\",\"alcohol\":false},\"v1\":" \
+    json_message = "{\"glass\":\"Glass 0\",\"v0\":{\"use\":true,\"name\":\"Coca Cola\",\"alcohol\":true},\"v1\":" \
                    "{\"use\":false,\"name\":\"Coca Cola\",\"alcohol\":false},\"v2\":{\"use\":false,\"name\":\"" \
                    "Lemonade\",\"alcohol\":false},\"v3\":{\"use\":true,\"name\":\"Orangeade\",\"alcohol\":false}}"
     json_parser = JsonParser(json_message)

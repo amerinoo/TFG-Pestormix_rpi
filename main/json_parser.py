@@ -1,6 +1,7 @@
 import json
 
 from main.cocktail import Cocktail
+from main.glass import Glass
 
 __author__ = 'Albert'
 
@@ -15,7 +16,8 @@ class JsonParser:
         glass_key = "glass"
         print glass_key, message[glass_key]
         print
-        self.cocktail.setglass(message[glass_key])
+        glass = Glass(message[glass_key], 10)
+        self.cocktail.set_glass(glass)
         use_key = "use"
         name_key = "name"
         alcohol_key = "alcohol"
