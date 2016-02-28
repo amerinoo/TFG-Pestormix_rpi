@@ -1,7 +1,7 @@
 import json
 
-from main.cocktail import Cocktail
-from main.glass import Glass
+from cocktail import Cocktail
+from glass import Glass
 
 __author__ = 'Albert'
 

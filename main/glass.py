@@ -9,7 +9,7 @@ class Glass:
     def set_glass_name(self, glass_name):
         self.name = glass_name
 
-    def set_time(self, valve, time):
+    def set_time(self, time):
         self.time = time
 
     def __str__(self):

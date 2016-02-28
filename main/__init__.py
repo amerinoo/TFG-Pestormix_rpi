@@ -1,14 +1,14 @@
 # !/usr/bin/env python
 # -*- coding: utf-8 -*-
-import sys
-import os
-import traceback
-import optparse
-import time
 import datetime
+import optparse
+import os
 import socket
+import sys
+import time
+import traceback
 
-from main.json_parser import JsonParser
+from json_parser import JsonParser
 
 __author__ = 'Albert'
 
@@ -37,12 +37,15 @@ def main_loop():
 
 
 def main_loop_mock():
-    json_message = "{\"glass\":\"Glass 0\",\"v0\":{\"use\":true,\"name\":\"Coca Cola\",\"alcohol\":true},\"v1\":" \
-                   "{\"use\":false,\"name\":\"Coca Cola\",\"alcohol\":false},\"v2\":{\"use\":false,\"name\":\"" \
-                   "Lemonade\",\"alcohol\":false},\"v3\":{\"use\":true,\"name\":\"Orangeade\",\"alcohol\":false}}"
+    json_message = "{\"glass\":\"Glass 0\"," \
+                   "\"v0\":{\"use\":true,\"name\":\"Coca Cola\",\"alcohol\":true}," \
+                   "\"v1\":{\"use\":true,\"name\":\"Coca Cola\",\"alcohol\":true}," \
+                   "\"v2\":{\"use\":true,\"name\":\"Lemonade\",\"alcohol\":true}," \
+                   "\"v3\":{\"use\":true,\"name\":\"Orangeade\",\"alcohol\":false}}"
     json_parser = JsonParser(json_message)
     cocktail = json_parser.parse()
     cocktail.serve()
+
 
 def main_mock():
     global options, args
